@@ -1,0 +1,185 @@
+/* components/PICOFlowSelector/PICOFlowSelector.css */
+
+.pico-flow-selector {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  border: 1px solid #e5e7eb;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.pico-flow-selector__content {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.pico-flow-selector__header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.pico-flow-selector__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 0.5rem 0;
+}
+
+.pico-flow-selector__description {
+  color: #6b7280;
+  margin: 0;
+}
+
+.pico-flow-selector__options {
+  max-width: 48rem;
+  margin: 0 auto;
+  flex: 1;
+  display: flex;
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .pico-flow-selector__options {
+    flex-direction: column;
+  }
+}
+
+.flow-option {
+  flex: 1;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  transition: all 0.2s;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.flow-option:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.flow-option--ai {
+  background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+}
+
+.flow-option--manual {
+  background: linear-gradient(135deg, #dcfce7 0%, #d1fae5 100%);
+}
+
+.flow-option__content {
+  text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.flow-option__icon {
+  width: 3rem;
+  height: 3rem;
+  margin: 0 auto 0.75rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.flow-option--ai .flow-option__icon {
+  background: linear-gradient(to right, #3b82f6, #8b5cf6);
+}
+
+.flow-option--manual .flow-option__icon {
+  background: linear-gradient(to right, #10b981, #059669);
+}
+
+.flow-option__title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 0.75rem 0;
+}
+
+.flow-option__description {
+  color: #6b7280;
+  margin: 0 0 1rem 0;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.flow-option__features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.flow-option__feature {
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  color: #374151;
+  gap: 0.5rem;
+}
+
+.flow-option__feature svg {
+  color: #10b981;
+  flex-shrink: 0;
+}
+
+.flow-option__feature span {
+  font-weight: 600;
+}
+
+.flow-option__button {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: auto;
+  color: white;
+  font-size: 0.875rem;
+}
+
+.flow-option__button--ai {
+  background: linear-gradient(to right, #3b82f6, #8b5cf6);
+}
+
+.flow-option__button--ai:hover {
+  background: linear-gradient(to right, #2563eb, #7c3aed);
+}
+
+.flow-option__button--manual {
+  background: linear-gradient(to right, #10b981, #059669);
+}
+
+.flow-option__button--manual:hover {
+  background: linear-gradient(to right, #059669, #047857);
+}
+
+.pico-flow-selector__footer {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+.pico-flow-selector__footer p {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0;
+}

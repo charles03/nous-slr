@@ -125,8 +125,6 @@
   justify-content: center;
 }
 
-/* .workflow-steps__icon--collapsed - No additional margin needed for collapsed state */
-
 .workflow-steps__icon--expanded {
   margin-right: 0.75rem;
 }

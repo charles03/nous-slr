@@ -8,6 +8,7 @@ import Footer from './components/Footer/Footer';
 import ProjectList from './components/ProjectList/ProjectList';
 import CreateProjectModal from './components/CreateProjectModal/CreateProjectModal';
 import QueryPage from './pages/QueryPage/QueryPage';
+import PICOCriteriaPage from './components/PICOCriteriaPage/PICOCriteriaPage';
 import { api } from './services/api';
 import './App.css';
 
@@ -72,10 +73,14 @@ const HomePage: React.FC = () => {
     try {
       const project = await api.projects.getProject(id);
       actions.selectProject(project);
-      navigate(`/project/${id}/query`);
+      navigate(`/project/${id}/pico`);
     } catch (error) {
       actions.setError(error instanceof Error ? error.message : 'Failed to load project');
     }
+  };
+
+  const handleNavigateToPICO = () => {
+    navigate('/pico');
   };
 
   const handleCloneProject = async (id: number) => {
@@ -107,6 +112,47 @@ const HomePage: React.FC = () => {
       <Header onCreateProject={handleCreateProject} />
       
       <main className="main-content">
+        <div className="demo-navigation">
+          <div className="demo-navigation__container">
+            <h2 className="demo-navigation__title">NoustarX AISLR Demo</h2>
+            <p className="demo-navigation__description">
+              Explore the different components of our systematic literature review platform
+            </p>
+            <div className="demo-navigation__buttons">
+              <button 
+                onClick={handleNavigateToPICO}
+                className="demo-nav-btn demo-nav-btn--pico"
+              >
+                <span className="demo-nav-btn__icon">🎯</span>
+                <div className="demo-nav-btn__content">
+                  <span className="demo-nav-btn__title">PICO Criteria Builder</span>
+                  <span className="demo-nav-btn__desc">Interactive I/E criteria definition</span>
+                </div>
+              </button>
+              <button 
+                onClick={() => navigate('/query')}
+                className="demo-nav-btn demo-nav-btn--query"
+              >
+                <span className="demo-nav-btn__icon">🔍</span>
+                <div className="demo-nav-btn__content">
+                  <span className="demo-nav-btn__title">Query Builder</span>
+                  <span className="demo-nav-btn__desc">Search strategy development</span>
+                </div>
+              </button>
+              <button 
+                className="demo-nav-btn demo-nav-btn--screening"
+                disabled
+              >
+                <span className="demo-nav-btn__icon">📄</span>
+                <div className="demo-nav-btn__content">
+                  <span className="demo-nav-btn__title">Abstract Screening</span>
+                  <span className="demo-nav-btn__desc">Coming soon</span>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+        
         <ProjectList 
           projects={state.projects}
           onEdit={handleEditProject}
@@ -134,6 +180,17 @@ const ProjectQueryPage: React.FC = () => {
   };
 
   return <QueryPage onCreateProject={handleCreateProject} />;
+};
+
+// PICO Criteria Page Wrapper
+const PICOPage: React.FC = () => {
+  const { navigate } = useNavigation();
+
+  const handleCreateProject = () => {
+    navigate('/');
+  };
+
+  return <PICOCriteriaPage onCreateProject={handleCreateProject} />;
 };
 
 // Main App Content with Routing
@@ -186,6 +243,7 @@ const AppContent: React.FC = () => {
       <Route path="/" component={HomePage} exact />
       <Route path="/project" component={ProjectQueryPage} />
       <Route path="/query" component={ProjectQueryPage} />
+      <Route path="/pico" component={PICOPage} />
     </div>
   );
 };

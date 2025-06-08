@@ -1,0 +1,25 @@
+/* components/PICOCriteriaBuilder/PICOCriteriaBuilder.css */
+
+.pico-criteria-builder {
+  padding: 1.5rem;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.pico-categories-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .pico-categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .pico-categories-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

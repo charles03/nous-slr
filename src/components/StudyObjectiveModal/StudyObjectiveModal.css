@@ -1,0 +1,157 @@
+/* components/StudyObjectiveModal/StudyObjectiveModal.css */
+
+.study-objective-modal {
+  background-color: white;
+  border-radius: 0.5rem;
+  width: 100%;
+  max-width: 32rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.study-objective-modal__header {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.study-objective-modal__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.study-objective-modal__close {
+  color: #6b7280;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.study-objective-modal__close:hover {
+  color: #374151;
+}
+
+.study-objective-modal__body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group__label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.75rem;
+}
+
+.form-group__textarea {
+  width: 100%;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  line-height: 1.5;
+  transition: all 0.2s;
+  resize: vertical;
+  min-height: 8rem;
+}
+
+.form-group__textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.form-group__textarea::placeholder {
+  color: #9ca3af;
+}
+
+.demo-tip {
+  padding: 0.75rem;
+  background-color: #dbeafe;
+  border: 1px solid #bfdbfe;
+  border-radius: 0.5rem;
+}
+
+.demo-tip__content {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.demo-tip__icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background-color: #dbeafe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2563eb;
+  flex-shrink: 0;
+}
+
+.demo-tip__text {
+  flex: 1;
+}
+
+.demo-tip__description {
+  font-size: 0.875rem;
+  color: #1e40af;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.4;
+}
+
+.demo-tip__label {
+  font-weight: 500;
+}
+
+.demo-tip__button {
+  font-size: 0.75rem;
+  background-color: #2563eb;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 0.25rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.demo-tip__button:hover {
+  background-color: #1d4ed8;
+}
+
+.study-objective-modal__footer {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+@media (min-width: 640px) {
+  .study-objective-modal__footer {
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 0.75rem;
+  }
+}
+
+.study-objective-modal__footer .btn {
+  justify-content: center;
+}
