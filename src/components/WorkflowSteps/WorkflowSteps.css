@@ -1,0 +1,239 @@
+/* components/WorkflowSteps/WorkflowSteps.css */
+
+.workflow-steps {
+  background-color: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.5s ease-in-out;
+  overflow: hidden;
+  border-right: 1px solid #e5e7eb;
+  height: 100%;
+}
+
+.workflow-steps--expanded {
+  width: 20rem;
+}
+
+.workflow-steps--collapsed {
+  width: 6rem;
+}
+
+.workflow-steps__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.workflow-steps__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+  transition: opacity 0.3s;
+}
+
+.workflow-steps__title--visible {
+  opacity: 1;
+}
+
+.workflow-steps__title--hidden {
+  opacity: 0;
+  width: 0;
+  position: absolute;
+}
+
+.workflow-steps__toggle {
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  border: 1px solid #d1d5db;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  color: #374151;
+}
+
+.workflow-steps__toggle:hover {
+  background-color: #f3f4f6;
+}
+
+.workflow-steps__toggle-text {
+  margin-left: 0.5rem;
+  font-size: 0.875rem;
+  color: #374151;
+}
+
+.workflow-steps__instructions {
+  margin-bottom: 1rem;
+}
+
+.workflow-steps__instructions-text {
+  font-size: 0.875rem;
+  color: #4b5563;
+  margin: 0;
+}
+
+.workflow-steps__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.workflow-steps__item {
+  position: relative;
+}
+
+.workflow-steps__button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s;
+  position: relative;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  cursor: pointer;
+}
+
+.workflow-steps__button--active {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border-width: 2px;
+}
+
+.workflow-steps__button:hover {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.workflow-steps__icon {
+  border-radius: 50%;
+  padding: 0.5rem;
+  flex-shrink: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* .workflow-steps__icon--collapsed - No additional margin needed for collapsed state */
+
+.workflow-steps__icon--expanded {
+  margin-right: 0.75rem;
+}
+
+.workflow-steps__content {
+  flex: 1;
+  text-align: center;
+}
+
+.workflow-steps__text {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.workflow-steps__text--active {
+  font-weight: 600;
+}
+
+.workflow-steps__completion {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #10b981;
+}
+
+.workflow-steps__completion--compact {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+}
+
+.workflow-steps__completion--expanded {
+  width: 1.5rem;
+}
+
+.workflow-steps__tooltip {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%) translateY(-100%);
+  margin-bottom: 0.5rem;
+  background-color: #1f2937;
+  color: white;
+  font-size: 0.75rem;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  white-space: nowrap;
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.workflow-steps__button:hover .workflow-steps__tooltip {
+  opacity: 1;
+}
+
+.workflow-steps__tooltip-arrow {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) translateY(100%);
+  border: 4px solid transparent;
+  border-top-color: #1f2937;
+}
+
+.workflow-steps__progress {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.workflow-steps__progress-text {
+  font-size: 0.875rem;
+  color: #4b5563;
+  margin-bottom: 0.5rem;
+}
+
+.workflow-steps__progress-bar {
+  width: 100%;
+  background-color: #e5e7eb;
+  border-radius: 9999px;
+  height: 0.5rem;
+  overflow: hidden;
+}
+
+.workflow-steps__progress-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: all 0.5s;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .workflow-steps--expanded {
+    width: 16rem;
+  }
+  
+  .workflow-steps--collapsed {
+    width: 4rem;
+  }
+  
+  .workflow-steps__toggle {
+    padding: 0.5rem;
+  }
+  
+  .workflow-steps__toggle-text {
+    display: none;
+  }
+}

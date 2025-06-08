@@ -1,7 +1,7 @@
 {
   "name": "noustarx-aislr",
   "version": "1.0.0",
-  "description": "AI-Powered Systematic Literature Review Platform",
+  "description": "AI-Powered Systematic Literature Review Platform with Query Builder",
   "private": true,
   "homepage": ".",
   "dependencies": {
@@ -32,7 +32,9 @@
     "type-check": "tsc --noEmit",
     "lint": "eslint src --ext .ts,.tsx",
     "format": "prettier --write src/**/*.{ts,tsx,css,md}",
-    "analyze": "npm run build && npx bundle-analyzer build/static/js/*.js"
+    "analyze": "npm run build && npx bundle-analyzer build/static/js/*.js",
+    "dev": "npm start",
+    "preview": "npm run build && npx serve -s build"
   },
   "eslintConfig": {
     "extends": [
@@ -62,6 +64,9 @@
     "ai-powered",
     "research",
     "medical-research",
+    "query-builder",
+    "pubmed",
+    "search-strategy",
     "typescript",
     "react"
   ],

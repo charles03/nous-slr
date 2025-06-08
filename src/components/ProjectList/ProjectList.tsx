@@ -1,11 +1,12 @@
-// components/ProjectList/ProjectList.tsx
+// components/ProjectList/ProjectList.tsx - Unified Project List Component
 
 import React, { useState, useMemo } from 'react';
-import { Search, Plus, Edit2, Copy, Trash2 } from 'lucide-react';
+import { Search, Plus, Edit2, Copy, Trash2, Play } from 'lucide-react';
 import ProjectCard from '../ProjectCard/ProjectCard';
 import SearchAndFilters from '../SearchAndFilters/SearchAndFilters';
 import Pagination from '../Pagination/Pagination';
 import ProgressBar from '../ProgressBar/ProgressBar';
+import { Link, useNavigation } from '../Router/SimpleRouter';
 import { Project, ViewMode, SortBy, SortOrder } from '../../types/project';
 import './ProjectList.css';
 
@@ -24,6 +25,7 @@ const ProjectList: React.FC<ProjectListProps> = ({
   onDelete,
   onCreateProject,
 }) => {
+  const { navigate } = useNavigation();
   const [searchTerm, setSearchTerm] = useState('');
   const [viewMode, setViewMode] = useState<ViewMode>('list');
   const [sortBy, setSortBy] = useState<SortBy>('modifiedDate');
@@ -73,6 +75,11 @@ const ProjectList: React.FC<ProjectListProps> = ({
     return date.toLocaleDateString();
   };
 
+  // Navigate to project query page
+  const handleOpenProject = (id: number) => {
+    navigate(`/project/${id}/query`);
+  };
+
   return (
     <div className="project-list">
       <SearchAndFilters
@@ -92,13 +99,24 @@ const ProjectList: React.FC<ProjectListProps> = ({
           <div className="projects-grid">
             <div className="grid-container">
               {paginatedProjects.map(project => (
-                <ProjectCard 
-                  key={project.id} 
-                  project={project} 
-                  onEdit={onEdit}
-                  onClone={onClone}
-                  onDelete={onDelete}
-                />
+                <div key={project.id} className="project-card-wrapper">
+                  <ProjectCard 
+                    project={project} 
+                    onEdit={onEdit}
+                    onClone={onClone}
+                    onDelete={onDelete}
+                  />
+                  <div className="project-card-actions-extended">
+                    <button
+                      onClick={() => handleOpenProject(project.id)}
+                      className="project-card-open-btn"
+                      title="Open Project"
+                    >
+                      <Play size={16} />
+                      Open Project
+                    </button>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
@@ -138,9 +156,13 @@ const ProjectList: React.FC<ProjectListProps> = ({
                   {paginatedProjects.map(project => (
                     <tr key={project.id} className="table-row">
                       <td className="table-cell table-cell--name">
-                        <div className="project-name" title={project.name}>
+                        <Link
+                          to={`/project/${project.id}/query`}
+                          className="project-name project-name--link"
+                          title={project.name}
+                        >
                           {project.name}
-                        </div>
+                        </Link>
                       </td>
                       <td className="table-cell table-cell--category">
                         <span className="badge badge--disease">
@@ -180,6 +202,13 @@ const ProjectList: React.FC<ProjectListProps> = ({
                       </td>
                       <td className="table-cell table-cell--actions">
                         <div className="table-actions">
+                          <button
+                            onClick={() => handleOpenProject(project.id)}
+                            className="action-btn action-btn--open"
+                            title="Open Project"
+                          >
+                            <Play size={16} />
+                          </button>
                           <button 
                             onClick={() => onEdit(project.id)} 
                             className="action-btn action-btn--edit"
