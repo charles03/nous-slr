@@ -1,0 +1,91 @@
+/* components/ProgressBar/ProgressBar.css */
+
+.progress-bar {
+  width: 100%;
+}
+
+.progress-segments {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  gap: 0.25rem;
+}
+
+.progress-segment {
+  flex: 1;
+  height: 0.25rem;
+  border-radius: 9999px;
+  transition: all 0.3s;
+}
+
+.progress-segment--completed {
+  background-color: #93c5fd;
+}
+
+.progress-segment--pending {
+  background-color: #e5e7eb;
+}
+
+.progress-steps {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.progress-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.step-icon {
+  transition: color 0.2s;
+}
+
+.step-icon--current {
+  color: #2563eb;
+}
+
+.step-icon--completed {
+  color: #3b82f6;
+}
+
+.step-icon--pending {
+  color: #d1d5db;
+}
+
+.check-indicator {
+  height: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.check-icon {
+  color: #10b981;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #1f2937;
+  color: white;
+  font-size: 0.75rem;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+.tooltip-arrow {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 4px solid transparent;
+  border-top-color: #1f2937;
+}
