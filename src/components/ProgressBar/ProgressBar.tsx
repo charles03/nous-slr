@@ -12,8 +12,8 @@ interface ProgressBarProps {
 
 // Step Icons mapping
 const STEP_ICONS: Record<string, any> = {
-  "Query": Database,
-  "I/E Criteria": CheckSquare,
+  "Search": Database,
+  "PICO Criteria Builder": CheckSquare,
   "Abstract Screening": FileText,
   "Full Text Screening": File,
   "Quality Assessment": Award,

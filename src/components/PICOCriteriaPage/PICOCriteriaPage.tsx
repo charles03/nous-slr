@@ -22,6 +22,7 @@ import StudyObjectiveModal from '../StudyObjectiveModal/StudyObjectiveModal';
 import { PICOData, PICOFlowType, StudyObjective } from '../../types/pico';
 import { DEFAULT_PICO_DATA } from '../../constants/pico';
 import { WORKFLOW_STEPS } from '../../constants';
+import { useNavigation } from '../Router/SimpleRouter';
 import './PICOCriteriaPage.css';
 
 interface PICOCriteriaPageProps {
@@ -29,9 +30,15 @@ interface PICOCriteriaPageProps {
 }
 
 const PICOCriteriaPage: React.FC<PICOCriteriaPageProps> = ({ onCreateProject }) => {
+  const { currentPath } = useNavigation();
+  
+  // Extract project ID from URL if present
+  const projectIdMatch = currentPath.match(/\/project\/(\d+)\//);
+  const projectId = projectIdMatch ? parseInt(projectIdMatch[1], 10) : undefined;
+  
   // Workflow state
   const [isPanelExpanded, setIsPanelExpanded] = useState(true);
-  const [activeStep, setActiveStep] = useState(1); // I/E Criteria step
+  const [activeStep, setActiveStep] = useState(1); // PICO Criteria Builder step
   const [completedSteps, setCompletedSteps] = useState([true, false, false, false, false, false, false]);
 
   // PICO flow state
@@ -129,7 +136,7 @@ const PICOCriteriaPage: React.FC<PICOCriteriaPageProps> = ({ onCreateProject }) 
             <ChevronRight size={16} />
             <span>Projects</span>
             <ChevronRight size={16} />
-            <span className="project-path__current">Pancreatic Cancer Systematic Review</span>
+            <span className="project-path__current">Non-Small Cell Lung Cancer SLR</span>
           </div>
         </div>
       </div>
@@ -142,13 +149,14 @@ const PICOCriteriaPage: React.FC<PICOCriteriaPageProps> = ({ onCreateProject }) 
           activeStep={activeStep}
           completedSteps={completedSteps}
           onStepChange={setActiveStep}
+          projectId={projectId}
         />
 
         <div className="pico-criteria-page__main">
           {/* Step Header */}
           <div className="step-header">
             <div className="step-header__content">
-              <h2 className="step-header__title">Inclusion & Exclusion Criteria (PICO)</h2>
+              <h2 className="step-header__title">PICO Criteria Builder</h2>
               <div className="step-header__badge">Step 2 of {WORKFLOW_STEPS.length}</div>
             </div>
           </div>
@@ -215,7 +223,7 @@ const PICOCriteriaPage: React.FC<PICOCriteriaPageProps> = ({ onCreateProject }) 
                       className="btn btn--primary"
                     >
                       <Check size={16} />
-                      Complete I/E Criteria
+                      Complete PICO Criteria Builder
                     </button>
                   </div>
                 </div>

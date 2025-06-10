@@ -152,9 +152,24 @@ interface RouteProps {
 export const Route: React.FC<RouteProps> = ({ path, component: Component, exact = false }) => {
   const { currentPath } = useNavigation();
   
-  const matches = exact 
-    ? currentPath === path
-    : currentPath.startsWith(path);
+  // Handle parameter matching for routes like /project/:id/pico
+  const pathSegments = path.split('/');
+  const currentSegments = currentPath.split('/');
+  
+  let matches = false;
+  
+  if (exact) {
+    matches = currentPath === path;
+  } else if (path.includes(':')) {
+    // Parameter matching
+    if (pathSegments.length === currentSegments.length) {
+      matches = pathSegments.every((segment, index) => {
+        return segment.startsWith(':') || segment === currentSegments[index];
+      });
+    }
+  } else {
+    matches = currentPath.startsWith(path);
+  }
     
   return matches ? <Component /> : null;
 };

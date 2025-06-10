@@ -13,6 +13,7 @@ import {
   ChevronLeft,
   Menu
 } from 'lucide-react';
+import { useNavigation } from '../Router/SimpleRouter';
 import './WorkflowSteps.css';
 
 export interface WorkflowStep {
@@ -31,7 +32,7 @@ export const WORKFLOW_STEPS: WorkflowStep[] = [
   },
   { 
     icon: <Filter size={20} />, 
-    text: 'I/E Criteria',
+    text: 'PICO Criteria Builder',
     description: 'Set inclusion/exclusion criteria',
     color: '#008855',
   },
@@ -74,6 +75,7 @@ interface WorkflowStepsProps {
   isExpanded: boolean;
   onToggleExpanded: () => void;
   className?: string;
+  projectId?: number;
 }
 
 const WorkflowSteps: React.FC<WorkflowStepsProps> = ({
@@ -82,8 +84,29 @@ const WorkflowSteps: React.FC<WorkflowStepsProps> = ({
   onStepClick,
   isExpanded,
   onToggleExpanded,
-  className = ''
+  className = '',
+  projectId
 }) => {
+  const { navigate } = useNavigation();
+
+  const handleStepClick = (stepIndex: number) => {
+    const stepName = WORKFLOW_STEPS[stepIndex].text;
+    
+    if (projectId) {
+      // Navigate to project-specific pages
+      if (stepName === 'Search') {
+        navigate(`/project/${projectId}/query`);
+      } else if (stepName === 'PICO Criteria Builder') {
+        navigate(`/project/${projectId}/pico`);
+      } else {
+        // For other steps, just update the active step for now
+        onStepClick(stepIndex);
+      }
+    } else {
+      // Fallback to the existing step click behavior
+      onStepClick(stepIndex);
+    }
+  };
   return (
     <div className={`workflow-steps ${isExpanded ? 'workflow-steps--expanded' : 'workflow-steps--collapsed'} ${className}`}>
       <div className="workflow-steps__header">
@@ -123,7 +146,7 @@ const WorkflowSteps: React.FC<WorkflowStepsProps> = ({
           return (
             <div key={index} className="workflow-steps__item">
               <button
-                onClick={() => onStepClick(index)}
+                onClick={() => handleStepClick(index)}
                 className={`workflow-steps__button ${isActive ? 'workflow-steps__button--active' : ''}`}
                 style={{ 
                   borderColor: isActive ? step.color : '#E5E7EB',

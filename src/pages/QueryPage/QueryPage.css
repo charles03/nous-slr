@@ -145,6 +145,7 @@
   display: flex;
   gap: 1rem;
   align-items: stretch;
+  max-height: 350px;
 }
 
 @media (max-width: 768px) {

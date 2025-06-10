@@ -14,7 +14,7 @@ export const PROJECTS: Project[] = [
     progress: {
       currentStep: 4,
       totalSteps: 7,
-      steps: ["Query", "I/E Criteria", "Abstract Screening", "Full Text Screening", "Quality Assessment", "Data Extraction", "Meta Analysis"]
+      steps: ["Search", "PICO Criteria Builder", "Abstract Screening", "Full Text Screening", "Quality Assessment", "Data Extraction", "Meta Analysis"]
     }
   },
   {

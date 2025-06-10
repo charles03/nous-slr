@@ -4,6 +4,7 @@ import React from 'react';
 import { ChevronLeft, Menu, CheckCircle } from 'lucide-react';
 import { WORKFLOW_STEPS } from '../../constants';
 import { workflowStepIcons } from '../../constants/workflow';
+import { useNavigation } from '../Router/SimpleRouter';
 import './WorkflowSidebar.css';
 
 interface WorkflowSidebarProps {
@@ -12,6 +13,8 @@ interface WorkflowSidebarProps {
   activeStep: number;
   completedSteps: boolean[];
   onStepChange: (step: number) => void;
+  stepNameOverrides?: Record<string, string>;
+  projectId?: number;
 }
 
 const WorkflowSidebar: React.FC<WorkflowSidebarProps> = ({
@@ -20,7 +23,29 @@ const WorkflowSidebar: React.FC<WorkflowSidebarProps> = ({
   activeStep,
   completedSteps,
   onStepChange,
+  stepNameOverrides = {},
+  projectId,
 }) => {
+  const { navigate } = useNavigation();
+
+  const handleStepClick = (stepIndex: number) => {
+    const stepName = WORKFLOW_STEPS[stepIndex];
+    
+    if (projectId) {
+      // Navigate to project-specific pages
+      if (stepName === 'Search') {
+        navigate(`/project/${projectId}/query`);
+      } else if (stepName === 'PICO Criteria Builder') {
+        navigate(`/project/${projectId}/pico`);
+      } else {
+        // For other steps, just update the active step for now
+        onStepChange(stepIndex);
+      }
+    } else {
+      // Fallback to the existing step change behavior
+      onStepChange(stepIndex);
+    }
+  };
   return (
     <div className={`workflow-sidebar ${isPanelExpanded ? 'workflow-sidebar--expanded' : 'workflow-sidebar--collapsed'}`}>
       <div className="workflow-sidebar__header">
@@ -60,7 +85,7 @@ const WorkflowSidebar: React.FC<WorkflowSidebarProps> = ({
           return (
             <div key={index} className="workflow-step">
               <button
-                onClick={() => onStepChange(index)}
+                onClick={() => handleStepClick(index)}
                 className={`workflow-step__button ${isActive ? 'workflow-step__button--active' : ''}`}
                 style={{ 
                   borderColor: isActive ? stepConfig.color : undefined
@@ -142,11 +167,11 @@ const WorkflowSidebar: React.FC<WorkflowSidebarProps> = ({
 
 // Workflow step configurations
 const workflowStepConfigs = {
-  'Query': {
+  'Search': {
     color: '#0066CC',
     description: 'Define search strategy and terms'
   },
-  'I/E Criteria': {
+  'PICO Criteria Builder': {
     color: '#008855',
     description: 'Set inclusion/exclusion criteria'
   },

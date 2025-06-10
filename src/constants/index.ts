@@ -14,8 +14,8 @@ export const PAGINATION = {
 } as const;
 
 export const WORKFLOW_STEPS = [
-  'Query',
-  'I/E Criteria', 
+  'Search',
+  'PICO Criteria Builder', 
   'Abstract Screening',
   'Full Text Screening',
   'Quality Assessment',

@@ -11,8 +11,8 @@ import {
 } from 'lucide-react';
 
 export const workflowStepIcons = {
-  'Query': Search,
-  'I/E Criteria': Filter,
+  'Search': Search,
+  'PICO Criteria Builder': Filter,
   'Abstract Screening': Book,
   'Full Text Screening': FileText,
   'Quality Assessment': CheckSquare,

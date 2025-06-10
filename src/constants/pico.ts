@@ -46,24 +46,24 @@ export const DEFAULT_PICO_DATA: PICOData = {
     inclusions: [
       {
         id: 'pop_inc_1',
-        text: 'Adult patients with advanced or metastatic pancreatic cancer',
+        text: 'Adult patients with advanced or metastatic non-small cell lung cancer',
         order: 0
       }
     ],
     exclusions: [
       {
         id: 'pop_exc_1',
-        text: 'Studies that do not include pancreatic cancer patients',
+        text: 'Studies that do not include non-small cell lung cancer patients',
         order: 0
       },
       {
         id: 'pop_exc_2',
-        text: 'Studies exclusively involving early stage, operable pancreatic cancer patients',
+        text: 'Studies exclusively involving early stage, operable non-small cell lung cancer patients',
         order: 1
       },
       {
         id: 'pop_exc_3',
-        text: 'Studies exclusively focused on pediatric pancreatic cancer patients',
+        text: 'Studies exclusively focused on pediatric non-small cell lung cancer patients',
         order: 2
       }
     ]
@@ -72,7 +72,7 @@ export const DEFAULT_PICO_DATA: PICOData = {
     inclusions: [
       {
         id: 'int_inc_1',
-        text: 'Any therapeutic intervention for pancreatic cancer',
+        text: 'Any therapeutic intervention for non-small cell lung cancer',
         order: 0
       },
       {

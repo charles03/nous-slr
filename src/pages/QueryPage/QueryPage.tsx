@@ -13,6 +13,7 @@ import {
 } from '../../components/QueryModals/QueryModals';
 import { QueryFlow } from '../../types/query';
 import { cleanQuery } from '../../utils/queryFormatter';
+import { useNavigation } from '../../components/Router/SimpleRouter';
 import './QueryPage.css';
 
 // Mock generated queries for demo
@@ -27,6 +28,12 @@ interface QueryPageProps {
 }
 
 const QueryPage: React.FC<QueryPageProps> = ({ onCreateProject }) => {
+  const { currentPath } = useNavigation();
+  
+  // Extract project ID from URL if present
+  const projectIdMatch = currentPath.match(/\/project\/(\d+)\//);
+  const projectId = projectIdMatch ? parseInt(projectIdMatch[1], 10) : undefined;
+  
   // Workflow state
   const [isPanelExpanded, setIsPanelExpanded] = useState(true);
   const [activeTab, setActiveTab] = useState(0); // Search tab
@@ -141,7 +148,7 @@ const QueryPage: React.FC<QueryPageProps> = ({ onCreateProject }) => {
             <ChevronRight size={16} className="query-page__breadcrumb-separator" />
             <span className="query-page__breadcrumb-text">Projects</span>
             <ChevronRight size={16} className="query-page__breadcrumb-separator" />
-            <span className="query-page__breadcrumb-current">Pancreatic Cancer Systematic Review</span>
+            <span className="query-page__breadcrumb-current">Non-Small Cell Lung Cancer SLR</span>
           </div>
         </div>
       </div>
@@ -156,6 +163,7 @@ const QueryPage: React.FC<QueryPageProps> = ({ onCreateProject }) => {
           isExpanded={isPanelExpanded}
           onToggleExpanded={handleTogglePanel}
           className="query-page__workflow"
+          projectId={projectId}
         />
 
         {/* Right Panel - Query/Search Content */}
